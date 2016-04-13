@@ -5,7 +5,7 @@
 [![Test Coverage](https://codeclimate.com/github/thekaduu/Minerva/badges/coverage.svg)][testcoverage]
 [![Issue Count](https://codeclimate.com/github/thekaduu/Minerva/badges/issue_count.svg)][issuecount]
 
-
+   
 [codeclimate]: https://codeclimate.com/github/thekaduu/Minerva
 [testcoverage]: https://codeclimate.com/github/thekaduu/Minerva/coverage
 [issuecount]: https://codeclimate.com/github/thekaduu/Minerva
