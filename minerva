@@ -56,10 +56,10 @@ class Minerva < Thor
 	  	def rodar(sql)
 	  		begin
 	  			# Configs do banco de dados
-	  			host = 'localhost'
-	  			password = 'pwd1020'
-	  			user = 'sgolanw_lw'
-	  			dbname = 'sgolanw_dev'
+	  			host = 'host'
+	  			password = 'password'
+	  			user = 'user'
+	  			dbname = 'dbname'
 
 	  			puts "\n Configuração de Conexão\n"
 	  			puts "============================="
