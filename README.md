@@ -1,13 +1,14 @@
 # Minerva
 ====
-[![Build Status](http://img.shields.io/travis/erikhuda/thor.svg)][travis]
-[![Code Climate](http://img.shields.io/codeclimate/github/erikhuda/thor.svg)][codeclimate]
-[![Coverage Status](http://img.shields.io/coveralls/erikhuda/thor.svg)][coveralls]
+
+[![Code Climate](https://codeclimate.com/github/thekaduu/Minerva/badges/gpa.svg)][codeclimate]
+[![Test Coverage](https://codeclimate.com/github/thekaduu/Minerva/badges/coverage.svg)][testcoverage]
+[![Issue Count](https://codeclimate.com/github/thekaduu/Minerva/badges/issue_count.svg)][issuecount]
 
 
-[travis]: http://travis-ci.org/erikhuda/thor
-[codeclimate]: https://codeclimate.com/github/erikhuda/thor
-[coveralls]: https://coveralls.io/r/erikhuda/thor
+[codeclimate]: https://codeclimate.com/github/thekaduu/Minerva
+[testcoverage]: https://codeclimate.com/github/thekaduu/Minerva/coverage
+[issuecount]: https://codeclimate.com/github/thekaduu/Minerva
 
 Description
 -----------
