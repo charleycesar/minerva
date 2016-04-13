@@ -1,0 +1,83 @@
+require "thor"
+require "pg"
+ 
+class Minerva < Thor	
+
+  desc "executar PATCH PREFIX", "executa o patch SQL no banco de acordo com o arquivo config"
+  long_desc <<-LONGDESC
+    'minerva run' 
+ 
+    Você pode passar opcionalmente um segundo parametro que é o Prefixo que deseja executar
+ 
+    > $ minerva run patch_2014_01_01_iniciando.sql    
+  LONGDESC
+	def executar(patch, show=false, prefix=nil)    		
+	    if File.exists?(patch)
+	    	puts "\n Bem-vindo ao Minerva Deploy: \n"
+	    	puts "Executando patch: #{patch} \n"
+	    	sql = ''
+	    	dbprefix = ['cbpe','cbca','cbnr']
+	    	dbprefix = [prefix] if prefix
+	    	dbprefix.each do |dprefix|
+	    		sql << "\n--#{dprefix} \n"
+	    		text = File.read(patch) 
+	    		sql << text.gsub(/\$sgo/, dprefix)     		
+	    	end
+	    	rodar(sql)
+	    	puts sql if show
+	    end
+  	end
+
+  	desc "sql COMMAND_SQL PREFIX", "executa um SQL no banco em todos os prefixos ou um prefixo específico"
+  	long_desc <<-LONGDESC
+	    'minerva sql' Executa um sql no banco de dados definido nas configurações. Você pode passar um dbprefix específico como segundo parâmetro
+	    caso não seja passado, o SQL ira rodar com todos os prefixos
+	 
+	    > $ minerva sql 'CREATE TABLE $sgo_testando(id int not null primary key);' cbnr
+  	LONGDESC
+  	def sql (sql, prefix=nil)
+  		exec = ''
+  		if sql 
+  			prefix = [prefix] if prefix
+  			prefix = ['cbnr','cbc','cbca','cbpe'] unless prefix
+
+  			prefix.each do |dbprefix|
+  				exec << "\n--#{dbprefix}\n"
+  				exec << sql.gsub(/\$sgo/,dbprefix)	
+  			end
+  			puts "\nExcetudando SQL:"
+  			puts exec 
+  			rodar exec
+
+  			
+  		end
+  	end
+	no_tasks do
+	  	def rodar(sql)
+	  		begin
+	  			# Configs do banco de dados
+	  			host = 'localhost'
+	  			password = 'pwd1020'
+	  			user = 'sgolanw_lw'
+	  			dbname = 'sgolanw_dev'
+
+	  			puts "\n Configuração de Conexão\n"
+	  			puts "============================="
+
+	  			puts "   Host: #{host} \n   User: #{user} \n   Database: #{dbname}\n \n"
+		  		@connection =  PGconn.connect({:host => host, :password => password, :user => user, :dbname => dbname})
+			    res  = @connection.exec sql	   
+			    puts "\n \n Resultado: O Patch foi executado com sucesso!" 			    
+			rescue PG::Error => e
+				puts "\n \n Resultado: Ocorreu o seguinte erro"
+				puts e.message 
+			ensure			
+				@connection.close if @connection
+			end
+		end
+	end
+
+  	
+end
+
+Minerva.start(ARGV)

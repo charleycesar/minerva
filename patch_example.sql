@@ -1,0 +1,1 @@
+CREATE TABLE $sgo_teste(id int not null primary key);

@@ -1,6 +1,5 @@
 # Minerva
 ====
-
 [![Build Status](http://img.shields.io/travis/erikhuda/thor.svg)][travis]
 [![Code Climate](http://img.shields.io/codeclimate/github/erikhuda/thor.svg)][codeclimate]
 [![Coverage Status](http://img.shields.io/coveralls/erikhuda/thor.svg)][coveralls]
